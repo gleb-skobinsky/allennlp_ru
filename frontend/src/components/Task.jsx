@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 
 export function CurrentTask(thisTask) {
@@ -42,3 +43,20 @@ export function CurrentTask(thisTask) {
     </div>
   );
 }
+=======
+import React, { useEffect, useState } from "react";
+class CurrentTask extends React.Component {
+  render() {
+    return (
+      <div className="column">
+        {this.props.task.currentTask ? (
+          <div>{this.props.task.currentTask.name}</div>
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+    );
+  }
+}
+export default CurrentTask;
+>>>>>>> 68464d34031e25b641c5b2a3b97dbf6f387fb0ac
