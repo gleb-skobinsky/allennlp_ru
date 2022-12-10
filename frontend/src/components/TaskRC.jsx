@@ -46,7 +46,9 @@ export function TaskRC() {
       ></input>
       <div className="model-output">
         {answer == "Loading..." ? (
-          <span className="button is-large is-loading"></span>
+          <div class="column has-text-centered">
+            <div class="load"></div>
+          </div>
         ) : (
           <div>{answer}</div>
         )}
