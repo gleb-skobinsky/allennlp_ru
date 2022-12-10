@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .main-navigation {
   padding-left: 2%;
   align-items: center;
@@ -56,49 +55,38 @@ a[href]:hover {
   width: 100%;
   padding: 24px;
 }
-=======
-.main-navigation {
-  padding-left: 2%;
-  align-items: center;
-  vertical-align: middle;
-  align-content: center;
-  background-color: #1a4cae !important;
+.model-header {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
-.main-title {
-  position: relative;
-  vertical-align: middle;
+.model-name {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
-.main-upper-header {
-  border-radius: 0 0 0 0 !important;
+.model-options {
+  margin-top: 1rem;
+  margin-left: 0px;
   margin-bottom: 0px !important;
 }
-.category-label {
-  font-size: 0.875rem;
-  min-height: 42px;
-  padding-left: 16px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  font-size: 0.875rem;
-  position: relative;
-  color: #1a4cae;
+.text-input-label {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+.model-option {
   cursor: pointer;
+  margin-right: 4rem;
+  inline-size: min-content;
+  display: inline-block;
+  width: min-content;
 }
-.task-label {
-  height: 42px;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 32px;
-  font-size: 0.875rem;
-  display: block;
+.model-option:hover {
+  color: #2376e5;
 }
-a[href]:hover {
-  text-decoration: underline;
-  color: #1a4cae;
+.model-option:active,
+.model-option:focus {
+  color: #1a4cae !important;
+  border-bottom: 2px solid;
 }
-.catChevron {
-  float: right;
-  transform: scale(2, 1);
-  font-style: bold;
-  font-size: 0.7rem;
+hr {
+  margin: 0 0 0 0;
 }
->>>>>>> 68464d34031e25b641c5b2a3b97dbf6f387fb0ac
