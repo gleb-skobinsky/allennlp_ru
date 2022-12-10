@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ModelRow from "./ModelRow";
+import TaskInputComponent from "./TaskRC";
 
 export function CurrentTask(thisTask) {
   const [styleDemo, setStyleDemo] = useState("block");
@@ -62,21 +63,21 @@ export function CurrentTask(thisTask) {
           <div className="columns model-options">
             <div
               className="model-option"
-              tabindex="1"
+              tabIndex="1"
               onClick={(e) => showDemo(e)}
             >
               Демо
             </div>
             <div
               className="model-option"
-              tabindex="1"
+              tabIndex="1"
               onClick={(e) => showModelCard(e)}
             >
               Карточка модели
             </div>
             <div
               className="model-option"
-              tabindex="1"
+              tabIndex="1"
               onClick={(e) => showUsage(e)}
             >
               Использование
@@ -84,8 +85,7 @@ export function CurrentTask(thisTask) {
           </div>
           <hr></hr>
           <div style={{ display: styleDemo }}>
-            <div className="text-input-label">Отрывок</div>
-            <textarea className="textarea"></textarea>
+            <TaskInputComponent thisTask={currentTask} />
           </div>
           <div style={{ display: styleModelCard }}>Model card</div>
           <div style={{ display: styleUsage }}>Model usage</div>
