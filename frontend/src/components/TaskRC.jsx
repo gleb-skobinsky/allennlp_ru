@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 export function TaskRC() {
   const [passage, setPassage] = useState("");
   const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState(null);
   const handleRunRCModel = async (e) => {
     e.preventDefault();
+    setAnswer("Loading...");
     const requestOptions = {
       method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
       body: JSON.stringify({
         passage: passage,
         question: question,
       }),
     };
+    console.log(requestOptions);
     const response = await fetch(
       "/api/run/reading-comprehension",
       requestOptions
@@ -19,25 +25,32 @@ export function TaskRC() {
     if (!response.ok) {
       window.alert("Error occurred while running the model");
     } else {
-      window.alert("Model run ok!");
+      console.log(response);
+      response.json().then((data) => {
+        setAnswer("Ответ: " + data.answer);
+      });
     }
   };
   return (
     <div className="rc-task-demo">
-      <div
-        className="text-input-label"
+      <div className="text-input-label">Отрывок</div>
+      <textarea
+        className="textarea"
         onChange={(e) => setPassage(e.target.value)}
-      >
-        Отрывок
-      </div>
-      <textarea className="textarea"></textarea>
-      <div
-        className="text-input-label"
+      ></textarea>
+      <div className="text-input-label">Вопрос</div>
+      <input
+        type="text"
+        className="input"
         onChange={(e) => setQuestion(e.target.value)}
-      >
-        Вопрос
+      ></input>
+      <div className="model-output">
+        {answer == "Loading..." ? (
+          <span className="button is-large is-loading"></span>
+        ) : (
+          <div>{answer}</div>
+        )}
       </div>
-      <input type="text" className="input"></input>
       <button
         className="button run-model is-info app-color"
         onClick={handleRunRCModel}
