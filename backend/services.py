@@ -9,6 +9,9 @@ import database as _database
 import models as _models
 import schemas as _schemas
 
+from allennlp.predictors.predictor import Predictor
+import os
+
 oauth2schema = _security.OAuth2PasswordBearer(tokenUrl="/api/token")
 
 JWT_SECRET = "myjwtsecret"
@@ -110,3 +113,23 @@ async def create_model(model: _schemas.ModelCreate, db: _orm.Session):
     db.commit()
     db.refresh(model_obj)
     return model_obj
+
+
+async def run_reading_comprehension(passage: str, question: str):
+    try:
+        predictor = Predictor.from_path(os.path.join("model_zoo", "model_rc.tar.gz"))
+        prediction = predictor.predict(passage=passage, question=question)
+        answer = prediction["best_span_str"]
+        span_start = prediction["best_span"][0]
+        span_end = prediction["best_span"][1]
+        return {
+            "passage": passage,
+            "question": question,
+            "answer": answer,
+            "answer_span_start": span_start,
+            "answer_span_end": span_end,
+        }
+    except:
+        return _fastapi.HTTPException(
+            status_code=406, detail="Error while running the model"
+        )

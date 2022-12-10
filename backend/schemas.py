@@ -81,3 +81,19 @@ class Example(_ExampleBase):
 
     class Config:
         orm_mode = True
+
+
+"""
+Schemas for launching NLP models
+"""
+
+
+class RunRCModel(_pydantic.BaseModel):
+    passage: str
+    question: str
+
+
+class RCModelResponse(RunRCModel):
+    answer: str
+    answer_span_start: int
+    answer_span_end: int

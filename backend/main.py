@@ -84,3 +84,13 @@ async def get_model_by_name(
     if db_model == None:
         raise _fastapi.HTTPException(status_code=404, detail="Модель не найдена")
     return db_model
+
+
+"""
+Run models API options
+"""
+
+
+@app.post("/api/run/reading-comprehension", response_model=_schemas.RCModelResponse)
+async def run_rc_model(model: _schemas.RunRCModel):
+    return await _services.run_reading_comprehension(model.passage, model.question)
