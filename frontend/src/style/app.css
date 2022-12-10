@@ -82,11 +82,6 @@ a[href]:hover {
 .model-option:hover {
   color: #2376e5;
 }
-.model-option:active,
-.model-option:focus {
-  color: #1a4cae !important;
-  border-bottom: 2px solid;
-}
 hr {
   margin: 0 0 0 0;
 }
@@ -129,4 +124,7 @@ hr {
   100% {
     transform: rotate(360deg);
   }
+}
+div:focus-visible {
+  outline: 0px solid black;
 }

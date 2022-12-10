@@ -3,13 +3,18 @@ import ModelRow from "./ModelRow";
 import TaskInputComponent from "./TaskPseudoRouter";
 
 export function CurrentTask(thisTask) {
-  const [styleDemo, setStyleDemo] = useState("block");
-  const [styleModelCard, setStyleModelCard] = useState("none");
-  const [styleUsage, setStyleUsage] = useState("none");
+  const focusedStyle = {
+    color: "#1a4cae",
+    borderBottom: "2px solid",
+  };
+  const unfocusedStyle = {};
+  const [demoFocused, setDemoFocused] = useState(true);
+  const [modelCardFocused, setModelCardFocused] = useState(false);
+  const [usageFocused, setUsageFocused] = useState(false);
+
   const [currentTask, setTask] = useState(null);
   const [currentModel, setModel] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [loaded, setLoaded] = useState(false);
   const getTask = async (taskname) => {
     const requestOptions = {
       method: "GET",
@@ -26,7 +31,6 @@ export function CurrentTask(thisTask) {
     } else {
       const data = await response.json();
       setTask(data);
-      setLoaded(true);
       return data;
     }
   };
@@ -34,19 +38,19 @@ export function CurrentTask(thisTask) {
     getTask(thisTask);
   }, []);
   function showDemo(event) {
-    setStyleDemo("block");
-    setStyleModelCard("none");
-    setStyleUsage("none");
+    setDemoFocused(true);
+    setModelCardFocused(false);
+    setUsageFocused(false);
   }
   function showModelCard(event) {
-    setStyleDemo("none");
-    setStyleModelCard("block");
-    setStyleUsage("none");
+    setDemoFocused(false);
+    setModelCardFocused(true);
+    setUsageFocused(false);
   }
   function showUsage(event) {
-    setStyleDemo("none");
-    setStyleModelCard("none");
-    setStyleUsage("block");
+    setDemoFocused(false);
+    setModelCardFocused(false);
+    setUsageFocused(true);
   }
   return (
     <div className="column">
@@ -65,6 +69,7 @@ export function CurrentTask(thisTask) {
               className="model-option"
               tabIndex="1"
               onClick={(e) => showDemo(e)}
+              style={demoFocused ? focusedStyle : unfocusedStyle}
             >
               Демо
             </div>
@@ -72,6 +77,7 @@ export function CurrentTask(thisTask) {
               className="model-option"
               tabIndex="1"
               onClick={(e) => showModelCard(e)}
+              style={modelCardFocused ? focusedStyle : unfocusedStyle}
             >
               Карточка модели
             </div>
@@ -79,16 +85,21 @@ export function CurrentTask(thisTask) {
               className="model-option"
               tabIndex="1"
               onClick={(e) => showUsage(e)}
+              style={usageFocused ? focusedStyle : unfocusedStyle}
             >
               Использование
             </div>
           </div>
           <hr></hr>
-          <div style={{ display: styleDemo }}>
+          <div style={{ display: demoFocused ? "block" : "none" }}>
             <TaskInputComponent thisTask={currentTask} />
           </div>
-          <div style={{ display: styleModelCard }}>Model card</div>
-          <div style={{ display: styleUsage }}>Model usage</div>
+          <div style={{ display: modelCardFocused ? "block" : "none" }}>
+            Model card
+          </div>
+          <div style={{ display: usageFocused ? "block" : "none" }}>
+            Model usage
+          </div>
         </main>
       ) : (
         <main className="task-display">

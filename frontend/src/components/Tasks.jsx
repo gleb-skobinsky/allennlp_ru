@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CurrentTask } from "./Task";
 
-const HideOrShowCategory = ({}) => {
+const HideOrShowCategory = () => {
   const [state, setState] = useState("^");
   const [stateSentence, setStateSentence] = useState("^");
   const [styleHide, setStyleHide] = useState("block");

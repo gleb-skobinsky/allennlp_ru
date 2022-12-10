@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export function TaskRC() {
   const [passage, setPassage] = useState("");
@@ -45,7 +45,7 @@ export function TaskRC() {
         onChange={(e) => setQuestion(e.target.value)}
       ></input>
       <div className="model-output">
-        {answer == "Loading..." ? (
+        {answer === "Loading..." ? (
           <div class="column has-text-centered">
             <div class="load"></div>
           </div>
