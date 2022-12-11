@@ -133,3 +133,55 @@ hr {
 div:focus-visible {
   outline: 0px solid black;
 }
+h5 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin: 36px 0 22px;
+  padding: 0;
+  text-transform: uppercase;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 24px 0;
+  color: #47515c;
+  font-family: Lato, "Helvetica Neue", Helvetica, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-variant-numeric: lining-nums;
+  line-height: 1.375;
+}
+pre {
+  background: rgb(240, 247, 255);
+  border: 1px solid #ddd;
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 1400px;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+}
+
+.models-dropdown {
+  width: 100%;
+  min-width: 100%;
+}
+.dropdown-trigger {
+  width: 100%;
+}
+.dropdown-button {
+  width: 100%;
+  text-align: start !important;
+  justify-content: start !important;
+}
+#dropdown-menu {
+  width: 100%;
+}

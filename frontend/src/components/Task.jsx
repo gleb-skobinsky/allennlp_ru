@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TaskInputComponent from "./TaskPseudoRouter";
 import ModelCard from "./ModelCardComponent";
+import ModelUsage from "./ModelUsage";
 
 export function CurrentTask(thisTask) {
   const focusedStyle = {
@@ -71,7 +72,7 @@ export function CurrentTask(thisTask) {
           <div className="model-header">Модель</div>
           <div>
             {typeof currentTask.models[0] !== "undefined" ? (
-              <div className="dropdown is-active">
+              <div className="dropdown is-active models-dropdown">
                 <div
                   className="dropdown-trigger"
                   onClick={(e) =>
@@ -81,7 +82,7 @@ export function CurrentTask(thisTask) {
                   }
                 >
                   <button
-                    className="button"
+                    className="button dropdown-button"
                     aria-haspopup="true"
                     aria-controls="dropdown-menu"
                   >
@@ -150,7 +151,7 @@ export function CurrentTask(thisTask) {
             <ModelCard model={currentModel} />
           </div>
           <div style={{ display: usageFocused ? "block" : "none" }}>
-            Model usage
+            <ModelUsage model={currentModel} />
           </div>
         </main>
       ) : (
