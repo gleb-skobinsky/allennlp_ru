@@ -75,9 +75,9 @@ a[href]:hover {
 .model-option {
   cursor: pointer;
   margin-right: 4rem;
-  inline-size: min-content;
-  display: inline-block;
-  width: min-content;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .model-option:hover {
   color: #2376e5;
@@ -92,10 +92,15 @@ hr {
 .run-model {
   margin-top: 3rem;
 }
-.model-output {
+.with-space {
   margin-top: 2rem;
 }
-
+.with-half-space {
+  margin-top: 1rem;
+}
+.with-light-grey-border {
+  border: #e7e7e7 0.5px solid;
+}
 .load {
   margin: auto;
   border: 16px solid #f3f3f3;

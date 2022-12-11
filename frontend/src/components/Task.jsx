@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ModelRow from "./ModelRow";
 import TaskInputComponent from "./TaskPseudoRouter";
+import ModelCard from "./ModelCardComponent";
 
 export function CurrentTask(thisTask) {
   const focusedStyle = {
@@ -11,6 +11,7 @@ export function CurrentTask(thisTask) {
   const [demoFocused, setDemoFocused] = useState(true);
   const [modelCardFocused, setModelCardFocused] = useState(false);
   const [usageFocused, setUsageFocused] = useState(false);
+  const [dropDownVisible, setVisibility] = useState("none");
 
   const [currentTask, setTask] = useState(null);
   const [currentModel, setModel] = useState(null);
@@ -31,6 +32,9 @@ export function CurrentTask(thisTask) {
     } else {
       const data = await response.json();
       setTask(data);
+      if (typeof data.models[0] !== "undefined" && data.models[0] != null) {
+        setModel(data.models[0]);
+      }
       return data;
     }
   };
@@ -52,6 +56,12 @@ export function CurrentTask(thisTask) {
     setModelCardFocused(false);
     setUsageFocused(true);
   }
+  function handleSetModel(event) {
+    setVisibility("none");
+    if (typeof currentTask.models[event.id] !== "undefined") {
+      setModel(currentTask.models[event.id]);
+    }
+  }
   return (
     <div className="column">
       {currentTask ? (
@@ -60,9 +70,51 @@ export function CurrentTask(thisTask) {
           <p>{currentTask.description}</p>
           <div className="model-header">Модель</div>
           <div>
-            {currentTask.models.map(function (object, i) {
-              return <ModelRow obj={object} key={i} />;
-            })}
+            {typeof currentTask.models[0] !== "undefined" ? (
+              <div className="dropdown is-active">
+                <div
+                  className="dropdown-trigger"
+                  onClick={(e) =>
+                    dropDownVisible === "none"
+                      ? setVisibility("block")
+                      : setVisibility("none")
+                  }
+                >
+                  <button
+                    className="button"
+                    aria-haspopup="true"
+                    aria-controls="dropdown-menu"
+                  >
+                    <span>
+                      {currentModel != null ? currentModel.model_name : null}
+                    </span>
+                    <span className="icon is-small">
+                      <i className="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="dropdown-menu"
+                  id="dropdown-menu"
+                  role="menu"
+                  style={{ display: dropDownVisible }}
+                >
+                  <div className="dropdown-content">
+                    {currentTask.models.map(function (object, key) {
+                      return (
+                        <a
+                          className="dropdown-item"
+                          id={key}
+                          onClick={(e) => handleSetModel(e.target)}
+                        >
+                          {object.model_name}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </div>
           <div className="columns model-options">
             <div
@@ -71,7 +123,7 @@ export function CurrentTask(thisTask) {
               onClick={(e) => showDemo(e)}
               style={demoFocused ? focusedStyle : unfocusedStyle}
             >
-              Демо
+              <span className="model-option-label">Демо</span>
             </div>
             <div
               className="model-option"
@@ -79,7 +131,7 @@ export function CurrentTask(thisTask) {
               onClick={(e) => showModelCard(e)}
               style={modelCardFocused ? focusedStyle : unfocusedStyle}
             >
-              Карточка модели
+              <span className="model-option-label">Карточка модели</span>
             </div>
             <div
               className="model-option"
@@ -87,7 +139,7 @@ export function CurrentTask(thisTask) {
               onClick={(e) => showUsage(e)}
               style={usageFocused ? focusedStyle : unfocusedStyle}
             >
-              Использование
+              <span className="model-option-label">Использование</span>
             </div>
           </div>
           <hr></hr>
@@ -95,7 +147,7 @@ export function CurrentTask(thisTask) {
             <TaskInputComponent thisTask={currentTask} />
           </div>
           <div style={{ display: modelCardFocused ? "block" : "none" }}>
-            Model card
+            <ModelCard model={currentModel} />
           </div>
           <div style={{ display: usageFocused ? "block" : "none" }}>
             Model usage

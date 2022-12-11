@@ -44,7 +44,7 @@ export function TaskRC() {
         className="input"
         onChange={(e) => setQuestion(e.target.value)}
       ></input>
-      <div className="model-output">
+      <div className="with-space">
         {answer === "Loading..." ? (
           <div class="column has-text-centered">
             <div class="load"></div>
