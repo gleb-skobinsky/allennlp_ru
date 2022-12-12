@@ -15,7 +15,7 @@ pip install -r requirements.txt
 python -m uvicorn main:app --reload
 ```
 
-Документация API (на FastAPI) запускается на localhoost:8000/docs
+Документация API (на FastAPI) запускается на <code>localhoost:8000/docs</code>
 
 Команды для запуска фронтенд-приложения (React):
 
@@ -26,7 +26,7 @@ npm install
 npm start
 ```
 
-Фронтенд доступен на localhost:3000
+Фронтенд доступен на <code>localhost:3000</code>
 
 Команды для скачивания моделей:
 
