@@ -30,7 +30,7 @@ npm start
 
 Команды для скачивания моделей:
 
-1) Reading comprehension - TransformerQA:
+1) Понимание прочитанного - TransformerQA:
 
 ```
 cd allennlp_ru/frontend
