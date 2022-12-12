@@ -15,7 +15,7 @@ pip install -r requirements.txt
 python -m uvicorn main:app --reload
 ```
 
-Документация API (на FastAPI) запускается на localhoost:8000/docs
+Документация API (на FastAPI) запускается на <code>localhoost:8000/docs</code>
 
 Команды для запуска фронтенд-приложения (React):
 
@@ -26,12 +26,13 @@ npm install
 npm start
 ```
 
-Фронтенд доступен на localhost:3000
+Фронтенд доступен на <code>localhost:3000</code>
 
 Команды для скачивания моделей:
 
-1) Reading comprehension - TransformerQA:
+1) Понимание прочитанного - TransformerQA:
 
 ```
-wget
+cd allennlp_ru/backend
+gdown https://drive.google.com/uc?id=1eYvUOVnKd-0lwWRyt0zFQ0SeCTEXBvUr --output model_zoo/model_rc.tar.gz
 ```
