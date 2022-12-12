@@ -7,3 +7,4 @@ reading_comprehension/
 visual_question_answering/
 backend/__pycache__/
 backend/model_zoo/*
+!backend/model_zoo/.gitkeep 
