@@ -33,6 +33,6 @@ npm start
 1) Понимание прочитанного - TransformerQA:
 
 ```
-cd allennlp_ru/frontend
+cd allennlp_ru/backend
 gdown https://drive.google.com/uc?id=1eYvUOVnKd-0lwWRyt0zFQ0SeCTEXBvUr --output model_zoo/model_rc.tar.gz
 ```
